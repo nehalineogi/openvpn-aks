@@ -29,7 +29,7 @@ Note: Steps 1-6 involves manual steps to prove out end-to-end network connectivi
 
 1. [Run Openvpn Access Server(openvpn-as) container on a docker host](docker/README.md)
 2. [Configure and test end-to-end connectivity with Openvpn Client](openvpn/setup.md)
-3. [Build docker-compose file](docker/README.md)
+3. [Build docker-compose.yaml file](docker/README.md)
 4. [Generate k8s manifest files using kompose](aks/README.md)
 5. [Run the container in AKS](aks/README.md)
 6. [Test outbound access from AKS pod -> OpenVPN Client for connections initiated from AKS side](aks/README.md)
