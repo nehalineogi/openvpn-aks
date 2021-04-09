@@ -58,7 +58,7 @@ Configure VPN and user using admin access https://10.240.0.76:943/admin.
 
 # Connect using OpenVPN Client
 
-Download OpenVPN Client file and connect user-s. More instructions to [configure and test end-to-end connectivity with Openvpn Client](openvpn/setup.md)
+Download OpenVPN Client file for user-s and connect using OpenVPN client. More instructions to [configure and test end-to-end connectivity with Openvpn Client](openvpn/setup.md)
 
 # Run tests
 

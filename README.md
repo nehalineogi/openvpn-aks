@@ -38,7 +38,6 @@ Note: Steps 1-6 involves manual steps to prove out end-to-end network connectivi
 9. Build automation and devops practice
 10. Secure management access
 11. Kubernetes namespace security with Azure Policy
-12. AKS pod as a OpenVPN client
 
 ## Contributors
 
