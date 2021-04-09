@@ -1,0 +1,30 @@
+apiVersion: v1
+kind: Service
+metadata:
+  annotations:
+    kompose.cmd: kompose -f ../docker/docker-compose.yaml convert
+    kompose.service.type: LoadBalancer
+    kompose.version: 1.22.0 (955b78124)
+  creationTimestamp: null
+  labels:
+    io.kompose.service: openvpn-as
+  name: openvpn-as
+  namespace: openvpn
+spec:
+  ports:
+    - name: "943"
+      port: 943
+      targetPort: 943
+    - name: "9443"
+      port: 9443
+      targetPort: 9443
+    - name: "1194"
+      port: 1194
+      # protocol: UDP
+      targetPort: 1194
+  selector:
+    io.kompose.service: openvpn-as
+  # type: LoadBalancer
+  type: NodePort
+status:
+  loadBalancer: {}

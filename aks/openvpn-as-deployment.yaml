@@ -1,0 +1,52 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  annotations:
+    kompose.cmd: kompose -f ../docker/docker-compose.yaml convert
+    kompose.service.type: LoadBalancer
+    kompose.version: 1.22.0 (955b78124)
+  creationTimestamp: null
+  labels:
+    io.kompose.service: openvpn-as
+  name: openvpn-as
+  namespace: openvpn
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      io.kompose.service: openvpn-as
+  strategy: {}
+  template:
+    metadata:
+      annotations:
+        kompose.cmd: kompose -f ../docker/docker-compose.yaml convert
+        kompose.service.type: LoadBalancer
+        kompose.version: 1.22.0 (955b78124)
+      creationTimestamp: null
+      labels:
+        io.kompose.service: openvpn-as
+    spec:
+      containers:
+        - env:
+            - name: INTERFACE
+              value: eth0
+            - name: PGID
+              value: "1000"
+            - name: PUID
+              value: "1000"
+            - name: TZ
+              value: Europe/London
+          image: ghcr.io/linuxserver/openvpn-as
+          name: openvpn-as
+          ports:
+            - containerPort: 943
+            - containerPort: 9443
+            - containerPort: 1194
+              protocol: UDP
+          resources: {}
+          securityContext:
+            capabilities:
+              add:
+                - NET_ADMIN
+      restartPolicy: Always
+status: {}
