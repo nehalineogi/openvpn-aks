@@ -1,26 +1,30 @@
 # Purpose
 
-Run Openvpn as a container in Azure AKS environment
+This documentation is a reference architecture for a multi-tenant application where an instance of OpenVPN in each Kubernetes namespace is needed to connect to each facility's store.
 
 # Architecture diagram
 
 ## Using Docker Host
 
-![alt text for image](architecture-diagram/openvpn-architecture-Docker.png)
+This diagram shows running OpenVPN inside a Docker container using a single VM inside Azure with a Public IP. 
+
+![OpenVPN and Docker](architecture-diagram/openvpn-architecture-Docker.png)
 
 ## Kubernetes Deployment
 
-![alt text for image](architecture-diagram/openvpn-architecture-AKS.png)
+This diagram shows running OpenVPN instance per Kubernetes namespace on an AKS cluster. 
+
+![OpenVPN and AKS](architecture-diagram/openvpn-architecture-AKS.png)
 
 ## Design Requirements
 
-A multi-tenant kubernetes cluster with openVPN container deployed per namespace with remote access to corresponding on-premises stores.
+A multi-tenant Kubernetes cluster with OpenVPN container deployed per namespace with remote access to corresponding on-premises stores.  Each namespace must be isolated from others.
 
 ## Prerequisites
 
 1. Familiarity with Docker and Kubernetes networking
 2. Linux VM in Azure with Public IP as a Docker Host
-3. AKS Cluster in Azure
+3. AKS Cluster in Azure with Calico Network Policy
 4. Docker Desktop Running Docker + Kubernetes and WSL(This is optional if you are using #3 and #4. This option can be use for quick testing)
 
 ## Project tasks breakdown
@@ -42,6 +46,6 @@ Note: Steps 1-6 involves manual steps to prove out end-to-end network connectivi
 
 ## Contributors
 
-Thank you Tommy Falgout (lastcoolnameleft) for the contributions
+Thank you [Tommy Falgout](https://github.com/lastcoolnameleft) for the contributions
 
 ## Acknowledgments
