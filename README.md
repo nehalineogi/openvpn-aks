@@ -40,7 +40,7 @@ Note: Steps 1-6 involves manual steps to prove out end-to-end network connectivi
 11. Kubernetes namespace security with Azure Policy
 12. AKS pod as a OpenVPN client
 
-13. ## Contributors
+## Contributors
 
 Thank you Tommy Falgout (lastcoolnameleft) for the contributions
 
