@@ -62,10 +62,7 @@ Download OpenVPN Client file and connect user-s. More instructions to [configure
 
 # Run tests
 
-#### From OpenVPN Server
-
-    kubectl exec -it openvpn-as-778b9f859-8ckc5 -n openvpn sh
-
+#### From OpenVPN Client
 
      ifconfig eth5
     eth5: flags=4163<UP,BROADCAST,RUNNING,MULTICAST> mtu 1500
@@ -91,6 +88,10 @@ Download OpenVPN Client file and connect user-s. More instructions to [configure
     --- 10.240.0.12 ping statistics ---
     5 packets transmitted, 4 received, 20% packet loss, time 4011ms
     rtt min/avg/max/mdev = 24.314/51.837/133.071/46.901 ms
+
+#### From OpenVPN Server
+
+    kubectl exec -it openvpn-as-778b9f859-8ckc5 -n openvpn sh
 
 #### From Ubuntu container
 
@@ -124,6 +125,7 @@ Download OpenVPN Client file and connect user-s. More instructions to [configure
     169.254.1.1 0.0.0.0 255.255.255.255 UH 0 0 0 eth0
     172.27.225.0 10.240.0.76 255.255.255.0 UG 0 0 0 eth0
 
+    Observe that the traffic get's NAT's to the IP of the OpenVPN server IP: 10.240.0.76. Source of the ICMP request packet is 10.240.0.76.
     tcpdump -ni eth0 icmp
 
     tcpdump: verbose output suppressed, use -v or -vv for full protocol decode
@@ -136,7 +138,7 @@ Download OpenVPN Client file and connect user-s. More instructions to [configure
 
 # Outbound Connectivity
 
-Currently requires adding port forwarding on the openVPN server
+Currently to initiate traffic from the AKS pod to on-prem store, requires adding port forwarding on the openVPN server
 
 Example: (Note: 172.27.225.10 is the static IP address of the OpenVPN Client)
 
