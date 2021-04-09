@@ -54,15 +54,15 @@ Install kompose [using this link](https://kubernetes.io/docs/tasks/configure-pod
 
 #### Admin Access to OpenVPN management UI via Azure VNET VM:
 
-Configure VPN and user using admin access https://10.240.0.76:943/admin
+Configure VPN and user using admin access https://10.240.0.76:943/admin.
 
 # Connect using OpenVPN Client
 
-Download OpenVPN Client file and connect
+Download OpenVPN Client file and connect user-s. More instructions to [configure and test end-to-end connectivity with Openvpn Client](openvpn/setup.md)
 
 # Run tests
 
-#### From OpenVPN Client
+#### From OpenVPN Server
 
     kubectl exec -it openvpn-as-778b9f859-8ckc5 -n openvpn sh
 
@@ -77,7 +77,7 @@ Download OpenVPN Client file and connect
     TX packets 0 bytes 0 (0.0 B)
     TX errors 0 dropped 0 overruns 0 carrier 0 collisions 0
 
-    route -n | grep 10.204
+
     route -n | grep 10.240
     10.240.0.0 172.27.225.1 255.255.0.0 U 0 0 0 eth5
 

@@ -4,6 +4,8 @@
 
 # OpenVPN Container Image
 
+The container image used for this lab/poc is:
+
 https://hub.docker.com/r/linuxserver/openvpn-as
 
 # Docker Desktop with WSL Linux
@@ -11,7 +13,7 @@ https://hub.docker.com/r/linuxserver/openvpn-as
 #### Create a new OpenVPN Container using Docker CLI
 
       docker ps -a
-      docker rm -f openvpn-as
+      docker rm -f openvpn-as (remvoe the container if it exists)
       docker run -d --name=openvpn-as --cap-add=NET_ADMIN -e PUID=1000 -e PGID=1000 -e TZ=Europe/London -e INTERFACE=eth0 `#optional` -p 943:943 -p 9443:9443 -p 1194:1194/udp -v $PWD/data:/config --restart unless-stopped ghcr.io/linuxserver/openvpn-as
       docker logs openvpn-as --follow
       docker ps
@@ -29,9 +31,11 @@ https://hub.docker.com/r/linuxserver/openvpn-as
       docker run -dit --name ubuntu ubuntu
       docker inspect ubuntu | grep -w "Networks" -A 10
       docker exec -it ubuntu sh
-      ifconfig
-      apt-get update
-      apt-get install iputils-ping tcpdump iproute2 net-tools curl
+
+            Install the tools as needed
+            ifconfig
+            apt-get update
+            apt-get install iputils-ping tcpdump iproute2 net-tools curl
 
 # Azure VM with Public IP as Docker Host
 
@@ -53,13 +57,13 @@ These steps are done on a linux VM running as Docker Host in Azure. Create the O
       apt-get update
       apt-get install iputils-ping tcpdump iproute2 net-tools curl
 
-#### Connect client VPN (login using user-s)
-
-[Configure and test end-to-end connectivity with Openvpn Client](openvpn/setup.md)
-
 #### Access the OpenVPN Management UI using the public IP
 
       https://<PIP_OF_AZURE_VM_RUNNING-DOCKER>:943/admin
+
+#### Connect client VPN (login using user-s)
+
+[Configure and test end-to-end connectivity with Openvpn Client](openvpn/setup.md)
 
 #### Login to the OpenVPN and ubuntu containers and validate traffic
 
@@ -68,6 +72,8 @@ These steps are done on a linux VM running as Docker Host in Azure. Create the O
       tcpdump -ni eth0 icmp
 
 # Using Docker Compose
+
+Base docker_compose.yaml file created using documentation [here](https://hub.docker.com/r/linuxserver/openvpn-as)
 
       cd docker (make sure docker_compose.yaml exists - example in the repo)
       docker ps
